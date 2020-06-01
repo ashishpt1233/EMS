@@ -1,0 +1,18 @@
+{ % extends 'base.html' %}
+
+{% block content %}
+
+<h2>vote page</h2>
+<h3>{{question.title}}</h3>
+<form action="/polls/{{questions.id}}/" method="POST">
+  {% csrf_token %}
+{% for choice in questions.choices %}
+<label>{{choice.text}}</label>
+  <input type="radio" name="choice" value="{{choice.id}}">
+{% else %}
+  <p>there is no available question</p>
+{% endfor %}
+<button type="submit" name="button" value="Vote">Vote</button>
+</form>
+<p>poll is created by {{questions.created_by.first_name}}</p>
+{% endblock content %}

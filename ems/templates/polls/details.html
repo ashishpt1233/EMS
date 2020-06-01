@@ -1,0 +1,15 @@
+{ % extends 'base.html' %}
+
+{% block content %}
+
+<h2>detail page</h2>
+<h3>{{question.title}}</h3>
+<p><em>choices for </em> {{questions.title}}</p>
+{% for choice in questions.choices %}
+
+  <li>{{choice.text}} {{choice.votes}}</li>
+{% empty %}
+  <p>there is no available question</p>
+{% endfor %}
+<p>poll is created by {{questions.created_by.first_name}}</p>
+{% endblock content %}
